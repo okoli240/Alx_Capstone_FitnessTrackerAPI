@@ -8,3 +8,8 @@ router.register(r'activities', ActivityViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+app_name = "activities"
+
+urlpatterns = [
+    path('', include(router.urls)),
+]
