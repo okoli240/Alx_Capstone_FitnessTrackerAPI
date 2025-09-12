@@ -9,4 +9,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'), 
     path('api/', include('activities.urls')),
+    path('api/v1/', include('activities.urls')), 
 ]
