@@ -47,7 +47,7 @@ Backend: Django, Django REST Framework
 
 Database: SQLite (default) → easily switchable to PostgreSQL/MySQL
 
-Authentication: Django auth / JWT (planned)
+Authentication: Django auth / JWT 
 
 Deployment: Render (or your chosen host)
 
@@ -132,7 +132,7 @@ Currently uses Django’s built-in auth system
 
 Planned upgrade: JWT Authentication with djangorestframework-simplejwt
 
-Example (after JWT is added):
+Example:
 
 Authorization: Bearer <your_token_here>
 
