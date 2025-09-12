@@ -33,7 +33,7 @@ This project addresses the problem of personal fitness tracking by providing a b
 
 # Features
 
-🔑 User Authentication (login, registration)
+🔑 User Authentication (Session-based & JWT Authentication with SimpleJWT)
 
 📋 CRUD Operations for fitness activities
 
@@ -58,30 +58,74 @@ git clone https://github.com/okoli240/Alx_Capstone_FitnessTrackerAPI.git
 cd Alx_Capstone_FitnessTrackerAPI/fitness_tracker_api
 
 2️⃣ Create and Activate Virtual Environment
-python3 -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
 
+python3 -m venv venv
+
+source venv/bin/activate   # On Windows: venv\Scripts\activate
 3️⃣ Install Dependencies
+
 pip install -r requirements.txt
 
 4️⃣ Run Migrations
+
 python manage.py migrate
 
 5️⃣ Create a Superuser
+
 python manage.py createsuperuser
 
 6️⃣ Start Development Server
+
 python manage.py runserver
+
+🔑 Authentication Setup
+Obtain a JWT token
+POST http://127.0.0.1:8000/api/token/
+Content-Type: application/json  
+
+{
+  "username": "yourusername",
+  "password": "yourpassword"
+}
+Response:
+
+json
+{
+  "refresh": "long_refresh_token_string",
+  "access": "short_access_token_string"
+}
+Use the token in requests
+Add this header to every authenticated request:
+
+Authorization: Bearer <access_token>
+Refresh the token
+
+
+POST http://127.0.0.1:8000/api/token/refresh/
+{
+  "refresh": "<your_refresh_token>"
+}
 
 # API Endpoints
 Method	Endpoint	Description
+
 POST	/api/auth/register/	Register new user
+
 POST	/api/auth/login/	Login and get token
+
 GET	/api/activities/	List all activities (user-specific)
+
 POST	/api/activities/	Create new activity
+
 GET	/api/activities/{id}/	Retrieve single activity
+
 PUT	/api/activities/{id}/	Update an activity
+
 DELETE	/api/activities/{id}/	Delete an activity
+
+POST	/api/token/	Obtain JWT access & refresh token
+
+POST	/api/token/refresh/	Refresh expired access token
 # Authentication
 
 Currently uses Django’s built-in auth system
@@ -107,20 +151,16 @@ POST /api/activities/
 
 # Deployment
 
-## Deployment
-
 The project is currently running locally. Deployment options include Render, Railway, or Heroku.
 
 
 # Future Improvements
 
-🔐 Add JWT authentication (djangorestframework-simplejwt)
-
 📊 Add charts & analytics (distance trends, calories burned)
 
 💻 Add frontend (React/Next.js) to visualize activities
 
-📱 Mobile integration (Flutter/React Native)
+📱 Mobile integration (Flutter/React Native)    
 
 # Author 
 
